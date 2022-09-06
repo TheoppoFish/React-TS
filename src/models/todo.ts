@@ -1,5 +1,5 @@
-type todo = {
+type Todo = {
   id: string;
   name: string;
 };
-export default todo;
+export default Todo;

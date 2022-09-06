@@ -1,22 +1,17 @@
-import { Fragment } from 'react';
-import todo from '../models/todo';
+import { Fragment, useContext } from 'react';
 
 import classes from '../styles/TodoItem.module.css';
+import { TodoContext } from '../store/todo-context';
 
-const TodoItem: React.FC<{
-  items: todo[];
-  clickToDelete: (id: string) => void;
-}> = (props) => {
+const TodoItem = () => {
+  const todoCtx = useContext(TodoContext);
   return (
     <Fragment>
-      {props.items.map((item) => (
+      {todoCtx.items.map((item) => (
         <li key={item.id} className={classes.item}>
           <input type='checkBox' id={item.id} />
           <label>{item.name}</label>
-          <button
-            id={item.id}
-            onClick={props.clickToDelete.bind(null, item.id)}
-          >
+          <button id={item.id} onClick={todoCtx.removeTodo.bind(null, item.id)}>
             Delete
           </button>
         </li>
